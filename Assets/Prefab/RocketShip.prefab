@@ -172,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249020287442704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.6255524, z: 0}
+  m_LocalPosition: {x: -35.8, y: 9.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4956414122742468}
@@ -522,9 +522,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249020287442704}
   serializedVersion: 2
-  m_Mass: 0.05
+  m_Mass: 0.1
   m_Drag: 0.4
-  m_AngularDrag: 1
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -539,9 +539,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 82e7049de2219455baa4e4ce9fb7ec1d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.411
   m_Pitch: 0.5
   Loop: 1
   Mute: 0
@@ -636,8 +636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7162fee6ad4f4f11831797d94f0e54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationThrust: 150
-  liftingThrust: 150
+  engineSound: {fileID: 8300000, guid: 618e334cca80941be895fada445fbb39, type: 3}
+  blastSound: {fileID: 8300000, guid: 92ac5a3b78c2343f3a2dfaa1f09ccf89, type: 3}
+  WinSound: {fileID: 8300000, guid: f9b1e05fa86da47789e35db0d0a779d0, type: 3}
+  rotationThrust: 180.01
+  liftingThrust: 200
 --- !u!136 &136149338833807236
 CapsuleCollider:
   m_ObjectHideFlags: 1
