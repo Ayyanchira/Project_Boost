@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Rocket : MonoBehaviour {
-    //todo fix lighting bug
-
-
+public class Rocket : MonoBehaviour 
+{
     Rigidbody rigidbody;
     AudioSource audioSource;
 
@@ -14,16 +12,22 @@ public class Rocket : MonoBehaviour {
     [SerializeField] float rotationThrust = 150f;
     [SerializeField] float liftingThrust = 10f;
 
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem deathParticles;
+
     enum State {Dying,Alive,Transcending}
     State state = State.Alive;
 
-	void Start () {
+	void Start () 
+    {
         rigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 	}
 	
-	void Update () {
-        if(state == State.Dying){return;}
+	void Update () 
+    {
+        if(state == State.Dying || state == State.Transcending){return;}
         RespondToThrustInput();
         RespondToRotationInput();
 	}
@@ -48,16 +52,20 @@ public class Rocket : MonoBehaviour {
 
     private void ExecuteSuccessSequence()
     {
+        mainEngineParticles.Stop();
         state = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(winSound);
+        successParticles.Play();
         Invoke("LoadScene", 2f);
     }
 
     private void ExecuteDeathSequence()
     {
-        state = State.Dying;
+        mainEngineParticles.Stop();
+        deathParticles.Play();
         audioSource.Stop();
+        state = State.Dying;
         audioSource.PlayOneShot(blastSound);
         Invoke("LoadScene", 2f);
     }
@@ -82,6 +90,7 @@ public class Rocket : MonoBehaviour {
         else
         {
             audioSource.Stop();
+            mainEngineParticles.Stop();
         }
     }
 
@@ -107,5 +116,6 @@ public class Rocket : MonoBehaviour {
         {
             audioSource.PlayOneShot(engineSound);
         }
+        mainEngineParticles.Play();
     }
 }
